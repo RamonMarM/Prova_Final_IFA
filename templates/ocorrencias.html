@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Ocorrencias{% endblock %}
+
+{% block page_content %}
+
+{{ wtf.quick_form(form) }}
+
+<div class="page-header"></div>
+
+<h2>Relação de ocorrências cadastradas</h2>
+<p>ordem decrescente</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Disciplina</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ocor in ocor_all %}
+        <tr>
+            <td>{{ ocor.date.strftime('%d/%m/%Y') }}</td>  <!-- Formatar a data corretamente -->
+            <td>{{ ocor.disc.name }}</td>  <!-- Acessa o nome da disciplina correta -->
+            <td>{{ ocor.descricao }}</td>  <!-- Descrição da ocorrência -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
